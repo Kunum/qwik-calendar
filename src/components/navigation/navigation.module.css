@@ -1,0 +1,10 @@
+#navigation{
+    display: flex;
+    height: 44px;
+    margin-bottom: 1em;
+}
+
+#navigation button{
+    min-width: 44px;
+    background: none;
+}
