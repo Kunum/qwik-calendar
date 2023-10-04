@@ -18,7 +18,6 @@ export const Navigation = component$((props) => {
     useVisibleTask$(({ track }) => {
         track(() => dateObj.value);
         props.onChangeCurrentDate$(dateObj.value);
-        console.log("executei")
     });
 
     return (

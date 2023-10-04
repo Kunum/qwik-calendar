@@ -1,0 +1,11 @@
+#weekdays{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.weekday{
+    flex: 0 0 14.2857%;
+    overflow: hidden;
+    margin-inline-end: 0px;
+    padding: 0.5em;
+}

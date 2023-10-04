@@ -12,7 +12,6 @@ export const Calendar = component$((props) => {
 
   const onChangeCurrentDate$ = $((newCurrentDate) => {
     currentDate.value = newCurrentDate;
-    console.log("aqui no calendar")
   }); 
 
   return (
@@ -24,6 +23,7 @@ export const Calendar = component$((props) => {
             onChangeCurrentDate$={onChangeCurrentDate$}
           />
           <MonthView
+            locale={locale}
             dateObj={currentDate.value}
           />
         </div>

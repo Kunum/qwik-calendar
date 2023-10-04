@@ -1,6 +1,6 @@
 {
   "name": "qwik-calendar",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Um componente de calendário para aplicações Qwik",
   "main": "./lib/index.qwik.mjs",
   "qwik": "./lib/index.qwik.mjs",

@@ -1,0 +1,7 @@
+#monthview{
+    flex-grow: 1;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.75em;
+}

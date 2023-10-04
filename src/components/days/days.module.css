@@ -1,0 +1,24 @@
+#days{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.day, .priorDay{
+    flex: 0 0 14.2857%;
+    overflow: hidden;
+    margin-inline-end: 0px;
+    
+    max-width: 100%;
+    padding: 10px 6.6667px;
+    background: none;
+    text-align: center;
+    line-height: 16px;
+}
+
+.priorDay{
+    color: #757575;
+}
+
+.weekendDayDay{
+    color: #d10000;
+}
