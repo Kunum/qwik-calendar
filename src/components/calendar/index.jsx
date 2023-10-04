@@ -14,6 +14,11 @@ export const Calendar = component$((props) => {
     currentDate.value = newCurrentDate;
   }); 
 
+  const onClickDay$ = $((value) => {
+    props.onClickDay$();
+    //console.log(value)
+  });
+
   return (
     <>
         <div id={css.qwikCalendar}>
@@ -25,6 +30,7 @@ export const Calendar = component$((props) => {
           <MonthView
             locale={locale}
             dateObj={currentDate.value}
+            onClickDay$={onClickDay$}
           />
         </div>
     </>

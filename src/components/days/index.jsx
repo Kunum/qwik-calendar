@@ -12,7 +12,8 @@ const Day = component$((props) => {
 
     return (
         <>
-            <button class={css.day} style={{color: textColor, backgroundColor: bgColor}}>
+            <button class={css.day} style={{color: textColor, backgroundColor: bgColor}}
+                onClick$={() => {props.onClickDay$(thisDate)}}>
                 <abbr>{thisDate.getDate()}</abbr>
             </button>
         </>
@@ -49,13 +50,13 @@ function getMonthLength(dateObj){
     return new Date(year, month, 0).getDate();
 }
 
-function getDaysOfTheMonth(dateObj){
+function getDaysOfTheMonth(dateObj, callback){
     let days = [];
 
     let lens = getMonthLength(dateObj)
 
     for (let i = 0; i < lens; i++){
-        days.push(<Day key={dateObj.valueOf()} dateObj={dateObj.valueOf()}/>);
+        days.push(<Day key={dateObj.valueOf()} dateObj={dateObj.valueOf()} onClickDay$={callback}/>);
         dateObj.setDate(dateObj.getDate() + 1);
     }
 
@@ -87,7 +88,7 @@ export const Days = component$((props) => {
     
     newDate = new Date(props.dateObj);
     newDate.setDate(1);
-    let daysOfTheMonth = getDaysOfTheMonth(newDate);
+    let daysOfTheMonth = getDaysOfTheMonth(newDate, props.onClickDay$);
     
     let daysUntilNextSaturday = getDaysUntilNextSaturday(newDate);
 

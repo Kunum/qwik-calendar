@@ -13,6 +13,7 @@ export const MonthView = component$((props) => {
             />
             <Days 
               dateObj={props.dateObj}
+              onClickDay$={props.onClickDay$}
             />
         </div>
     </>
