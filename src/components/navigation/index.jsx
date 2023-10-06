@@ -1,9 +1,11 @@
-import { component$, useComputed$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, useComputed$, useSignal, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
 
-import css from "./navigation.module.css";
+import css from "./navigation.module.css?inline";
+
 import { capitalizeFirstLetter } from "../../utils";
 
 export const Navigation = component$((props) => {
+    useStyles$(css);
 
     const dateObj = useSignal(props.dateObj);
 

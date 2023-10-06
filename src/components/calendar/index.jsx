@@ -1,10 +1,12 @@
-import { component$, $, useSignal } from "@builder.io/qwik";
+import { component$, $, useSignal, useStyles$ } from "@builder.io/qwik";
 
-import css from "./calendar.module.css";
+import css from "./calendar.module.css?inline";
+
 import { Navigation } from "../navigation";
 import { MonthView } from "../monthview";
 
 export const Calendar = component$((props) => {
+  useStyles$(css);
 
   const locale = "pt-br";
 
@@ -15,7 +17,7 @@ export const Calendar = component$((props) => {
   }); 
 
   const onClickDay$ = $((value) => {
-    props.onClickDay$();
+    props.onClickDay$(value);
     //console.log(value)
   });
 

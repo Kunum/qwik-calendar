@@ -1,8 +1,10 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStyles$ } from "@builder.io/qwik";
 
-import css from "./days.module.css";
+import css from "./days.module.css?inline";
 
 const Day = component$((props) => {
+    useStyles$(css);
+
     const thisDate = new Date(props.dateObj);
     const today = new Date();
 

@@ -1,9 +1,12 @@
-import { component$, Slot } from "@builder.io/qwik";
+import { component$, Slot, useStyles$ } from "@builder.io/qwik";
 
-import css from "./weekdays.module.css";
+import css from "./weekdays.module.css?inline";
+
 import { weekdays } from "../../locale";
 
 const WeekDay = component$((props) => {
+    useStyles$(css);
+
     return (
         <div class={css.weekday}>
             <abbr aria-label={props.label} title={props.label}>

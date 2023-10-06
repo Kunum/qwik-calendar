@@ -1,10 +1,13 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStyles$ } from "@builder.io/qwik";
 
-import css from "./monthview.module.css";
+import css from "./monthview.module.css?inline";
+
 import { WeekDays } from "../weekdays";
 import { Days } from "../days";
 
 export const MonthView = component$((props) => {
+  useStyles$(css);
+
   return (
     <>
         <div id={css.monthview}>
