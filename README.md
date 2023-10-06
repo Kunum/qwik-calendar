@@ -39,3 +39,7 @@ export default () => {
 | Prop name   | Description                                 | Default value | Example values                             |
 | ----------- | ------------------------------------------- | ------------- | ------------------------------------------ |
 | onClickDay$ | Function called when the user clicks a day. | n/a           | `(value) => alert('Clicked day: ', value)` |
+
+## Docs in other languages
+
+* [🇧🇷](https://github.com/Kunum/qwik-calendar/blob/main/docs/PTBR.md)
