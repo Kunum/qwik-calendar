@@ -1,3 +1,5 @@
-export const weekdays: {
-    "pt-br": string[];
-};
+interface WeekdaysInterface {
+    [key: string]: string[];
+}
+declare const weekdays: WeekdaysInterface;
+export { weekdays };

@@ -1,1 +1,2 @@
-export function capitalizeFirstLetter(str: any): any;
+declare function capitalizeFirstLetter(str: string): string;
+export { capitalizeFirstLetter };

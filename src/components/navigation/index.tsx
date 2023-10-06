@@ -1,10 +1,16 @@
-import { component$, useComputed$, useSignal, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
+import { PropFunction, component$, useComputed$, useSignal, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
 
 import css from "./navigation.module.css?inline";
 
 import { capitalizeFirstLetter } from "../../utils";
 
-export const Navigation = component$((props) => {
+export interface NavigationProps {
+    locale: string,
+    dateObj: number,
+    onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>
+}
+
+export const Navigation = component$((props: NavigationProps) => {
     useStyles$(css);
 
     const dateObj = useSignal(props.dateObj);
@@ -26,7 +32,7 @@ export const Navigation = component$((props) => {
         <>
             <div qc-comp-id="navigation">
                 <button onClick$={() => {
-                    let newDate = new Date(dateObj.value);
+                    const newDate = new Date(dateObj.value);
 
                     newDate.setFullYear(year.value - 1);
 
@@ -36,7 +42,7 @@ export const Navigation = component$((props) => {
                 </button>
 
                 <button onClick$={() => {
-                    let newDate = new Date(dateObj.value);
+                    const newDate = new Date(dateObj.value);
 
                     newDate.setFullYear(year.value, newDate.getMonth() - 1);
 
@@ -52,7 +58,7 @@ export const Navigation = component$((props) => {
                 </button>
 
                 <button onClick$={() => {
-                    let newDate = new Date(dateObj.value);
+                    const newDate = new Date(dateObj.value);
 
                     newDate.setFullYear(year.value, newDate.getMonth() + 1);
 
@@ -62,7 +68,7 @@ export const Navigation = component$((props) => {
                 </button>
 
                 <button onClick$={() => {
-                    let newDate = new Date(dateObj.value);
+                    const newDate = new Date(dateObj.value);
 
                     newDate.setFullYear(year.value + 1);
 

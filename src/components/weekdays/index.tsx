@@ -4,7 +4,11 @@ import css from "./weekdays.module.css?inline";
 
 import { weekdays } from "../../locale";
 
-const WeekDay = component$((props) => {
+export interface WeekDayProps {
+    label: string
+}
+
+const WeekDay = component$((props: WeekDayProps) => {
     useStyles$(css);
 
     return (
@@ -16,9 +20,12 @@ const WeekDay = component$((props) => {
     );
 });
 
-export const WeekDays = component$((props) => {
+export interface WeekDaysProps {
+    locale: string
+}
 
-    let daysOfTheWeek = weekdays[props.locale];
+export const WeekDays = component$((props: WeekDaysProps) => {
+    const daysOfTheWeek = weekdays[props.locale];
 
     return (
         <>

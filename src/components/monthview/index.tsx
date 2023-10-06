@@ -5,7 +5,13 @@ import css from "./monthview.module.css?inline";
 import { WeekDays } from "../weekdays";
 import { Days } from "../days";
 
-export const MonthView = component$((props) => {
+export interface MonthViewProps {
+  locale: string,
+  dateObj: number,
+  onClickDay$?: (day: Date) => void
+}
+
+export const MonthView = component$((props: MonthViewProps) => {
   useStyles$(css);
 
   return (
