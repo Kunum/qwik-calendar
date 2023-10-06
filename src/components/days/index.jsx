@@ -14,7 +14,7 @@ const Day = component$((props) => {
 
     return (
         <>
-            <button class={css.day} style={{color: textColor, backgroundColor: bgColor}}
+            <button qc-comp-id="day" style={{color: textColor, backgroundColor: bgColor}}
                 onClick$={() => {props.onClickDay$(thisDate)}}>
                 <abbr>{thisDate.getDate()}</abbr>
             </button>
@@ -27,7 +27,7 @@ const PriorDay = component$((props) => {
 
     return (
         <>
-            <button disabled class={css.priorDay}>
+            <button disabled qc-comp-id="prior-day">
                 <abbr>{thisDate.getDate()}</abbr>
             </button>
         </>
@@ -98,7 +98,7 @@ export const Days = component$((props) => {
 
     return (
         <>
-            <div id={css.days}>
+            <div qc-comp-id="days-div">
                 {days}
             </div>
         </>

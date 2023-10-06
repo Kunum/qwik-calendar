@@ -18,12 +18,11 @@ export const Calendar = component$((props) => {
 
   const onClickDay$ = $((value) => {
     props.onClickDay$(value);
-    //console.log(value)
   });
 
   return (
     <>
-        <div id={css.qwikCalendar}>
+        <div qc-comp-id="calendar">
           <Navigation
             locale={locale}
             dateObj={currentDate.value}

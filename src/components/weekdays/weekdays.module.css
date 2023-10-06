@@ -1,9 +1,9 @@
-#weekdays{
+:where([qc-comp-id='weekdays']){
     display: flex;
     flex-wrap: nowrap;
 }
 
-.weekday{
+:where([qc-comp-id='weekday']){
     flex: 0 0 14.2857%;
     overflow: hidden;
     margin-inline-end: 0px;

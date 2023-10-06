@@ -24,7 +24,7 @@ export const Navigation = component$((props) => {
 
     return (
         <>
-            <div id={css.navigation}>
+            <div qc-comp-id="navigation">
                 <button onClick$={() => {
                     let newDate = new Date(dateObj.value);
 

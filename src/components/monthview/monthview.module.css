@@ -1,4 +1,4 @@
-#monthview{
+:where([qc-comp-id='monthview']){
     flex-grow: 1;
     text-align: center;
     text-transform: uppercase;

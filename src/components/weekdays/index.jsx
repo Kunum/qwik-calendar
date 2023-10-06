@@ -8,7 +8,7 @@ const WeekDay = component$((props) => {
     useStyles$(css);
 
     return (
-        <div class={css.weekday}>
+        <div qc-comp-id="weekday">
             <abbr aria-label={props.label} title={props.label}>
                 <Slot/>
             </abbr>
@@ -22,7 +22,7 @@ export const WeekDays = component$((props) => {
 
     return (
         <>
-            <div id={css.weekdays}>
+            <div qc-comp-id="weekdays">
                 <WeekDay label={daysOfTheWeek[0]}>{daysOfTheWeek[0].slice(0, 3)}</WeekDay>
                 <WeekDay label={daysOfTheWeek[1]}>{daysOfTheWeek[1].slice(0, 3)}</WeekDay>
                 <WeekDay label={daysOfTheWeek[2]}>{daysOfTheWeek[2].slice(0, 3)}</WeekDay>

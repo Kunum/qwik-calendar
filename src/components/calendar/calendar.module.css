@@ -1,4 +1,4 @@
-#qwikCalendar{
+:where([qc-comp-id='calendar']) {
     width: 350px;
     max-width: 100%;
     background: white;
@@ -7,18 +7,18 @@
     line-height: 1.125em;
 }
 
-#qwikCalendar button{
+:where([qc-comp-id='calendar']) button{
     margin: 0;
     border: 0;
     outline: none;
 }
 
 
-#qwikCalendar button:enabled:hover{
+:where([qc-comp-id='calendar']) button:enabled:hover{
     background-color: #e6e6e6 !important;
     cursor: pointer;
 }
 
-#qwikCalendar *{
+:where([qc-comp-id='calendar']) *{
     box-sizing: border-box;
 }

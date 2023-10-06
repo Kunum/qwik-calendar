@@ -10,7 +10,7 @@ export const MonthView = component$((props) => {
 
   return (
     <>
-        <div id={css.monthview}>
+        <div qc-comp-id="monthview">
             <WeekDays
               locale={props.locale}
             />

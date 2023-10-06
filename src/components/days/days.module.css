@@ -1,9 +1,9 @@
-#days{
+:where([qc-comp-id='days-div']){
     display: flex;
     flex-wrap: wrap;
 }
 
-.day, .priorDay{
+:where([qc-comp-id='day']), :where([qc-comp-id='prior-day']){
     flex: 0 0 14.2857%;
     overflow: hidden;
     margin-inline-end: 0px;
@@ -15,10 +15,6 @@
     line-height: 16px;
 }
 
-.priorDay{
+:where([qc-comp-id='prior-day']){
     color: #757575;
-}
-
-.weekendDayDay{
-    color: #d10000;
 }
