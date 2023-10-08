@@ -1,4 +1,4 @@
-import { PropFunction, component$, useComputed$, useSignal, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
+import { CSSProperties, PropFunction, component$, useComputed$, useSignal, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
 
 import css from "./navigation.module.css?inline";
 
@@ -7,7 +7,8 @@ import { capitalizeFirstLetter } from "../../utils";
 export interface NavigationProps {
     locale: string,
     dateObj: number,
-    onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>
+    onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>,
+    styles?: CSSProperties
 }
 
 export const Navigation = component$((props: NavigationProps) => {
@@ -30,7 +31,7 @@ export const Navigation = component$((props: NavigationProps) => {
 
     return (
         <>
-            <div qc-comp-id="navigation">
+            <div qc-comp-id="navigation" style={props.styles}>
                 <button onClick$={() => {
                     const newDate = new Date(dateObj.value);
 

@@ -1,4 +1,4 @@
-import { component$, $, useSignal, useStyles$ } from "@builder.io/qwik";
+import { component$, $, useSignal, useStyles$, CSSProperties } from "@builder.io/qwik";
 
 import css from "./calendar.module.css?inline";
 
@@ -6,7 +6,16 @@ import { Navigation } from "../navigation";
 import { MonthView } from "../monthview";
 
 export interface CalendarProps {
-  onClickDay$?: (day: Date) => void
+  onClickDay$?: (day: Date) => void,
+  calendarStyles?: CSSProperties,
+  navigationStyles?: CSSProperties,
+  monthViewStyles?: CSSProperties,
+  dayStyles?: CSSProperties,
+  daysStyles?: CSSProperties,
+  invalidDayStyles?: CSSProperties,
+  dayTextColor?: string,
+  weekendTextColor?: string,
+  todayBgColor?: string
 }
 
 export const Calendar = component$((props: CalendarProps) => {
@@ -23,16 +32,24 @@ export const Calendar = component$((props: CalendarProps) => {
 
   return (
     <>
-        <div qc-comp-id="calendar">
+        <div qc-comp-id="calendar" style={props.calendarStyles}>
           <Navigation
             locale={locale}
             dateObj={currentDate.value}
             onChangeCurrentDate$={onChangeCurrentDate$}
+            styles={props.navigationStyles}
           />
           <MonthView
             locale={locale}
             dateObj={currentDate.value}
             onClickDay$={props.onClickDay$}
+            styles={props.monthViewStyles}
+            dayStyles={props.dayStyles}
+            daysStyles={props.daysStyles}
+            invalidDayStyles={props.invalidDayStyles}
+            dayTextColor={props.dayTextColor}
+            weekendTextColor={props.weekendTextColor}
+            todayBgColor={props.todayBgColor}
           />
         </div>
     </>
