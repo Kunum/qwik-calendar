@@ -4,17 +4,19 @@ import css from "./navigation.module.css?inline";
 
 import { capitalizeFirstLetter } from "../../utils";
 
-export interface NavigationProps {
+export interface NavProps {
     locale: string,
     dateObj: number,
     onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>,
+    onChangeCurrentView$: PropFunction<(newCurrentView: string) => void>,
     styles?: CSSProperties
 }
 
-export const Navigation = component$((props: NavigationProps) => {
+export const Navigation = component$((props: NavProps) => {
     useStyles$(css);
 
     const dateObj = useSignal(props.dateObj);
+    const currentView = useSignal("month");
 
     const month = useComputed$(() => {
         return new Date(dateObj.value).toLocaleString(props.locale, {month: 'long'});
@@ -29,56 +31,124 @@ export const Navigation = component$((props: NavigationProps) => {
         props.onChangeCurrentDate$(dateObj.value);
     });
 
-    return (
-        <>
-            <div qc-comp-id="navigation" style={props.styles}>
-                <button onClick$={() => {
-                    const newDate = new Date(dateObj.value);
+    useVisibleTask$(({track}) => {
+        track(() => {currentView.value});
+        props.onChangeCurrentView$(currentView.value);
+    });
 
-                    newDate.setFullYear(year.value - 1);
+    if (currentView.value === "month"){
+        return (
+            <>
+                <div qc-comp-id="navigation" style={props.styles}>
+                    <button onClick$={() => {
+                        const newDate = new Date(dateObj.value);
+    
+                        newDate.setFullYear(year.value - 1);
+    
+                        dateObj.value = newDate.valueOf();
+                    }}>
+                        «
+                    </button>
+    
+                    <button onClick$={() => {
+                        const newDate = new Date(dateObj.value);
+    
+                        newDate.setFullYear(year.value, newDate.getMonth() - 1);
+    
+                        dateObj.value = newDate.valueOf();
+                    }}>
+                        ‹   
+                    </button>
+    
+                    <button style={{flexGrow: 1}} onClick$={() => {
+                        currentView.value = "year";
+                    }}>
+                        <span>
+                            {capitalizeFirstLetter(month.value)} {year.value}
+                        </span>
+                    </button>
+    
+                    <button onClick$={() => {
+                        const newDate = new Date(dateObj.value);
+    
+                        newDate.setFullYear(year.value, newDate.getMonth() + 1);
+    
+                        dateObj.value = newDate.valueOf();
+                    }}>
+                        ›
+                    </button>
+    
+                    <button onClick$={() => {
+                        const newDate = new Date(dateObj.value);
+    
+                        newDate.setFullYear(year.value + 1);
+    
+                        dateObj.value = newDate.valueOf();
+                    }}>
+                        »
+                    </button>
+    
+                </div>
+            </>
+        );
+    }
+    else if (currentView.value === "year"){
+        return (
+            <>
+                <div qc-comp-id="navigation" style={props.styles}>
+                    <button onClick$={() => {
+                        const newDate = new Date(dateObj.value);
+    
+                        newDate.setFullYear(year.value - 10);
+    
+                        dateObj.value = newDate.valueOf();
+                    }}>
+                        «
+                    </button>
+    
+                    <button onClick$={() => {
+                        const newDate = new Date(dateObj.value);
+    
+                        newDate.setFullYear(year.value - 1);
+    
+                        dateObj.value = newDate.valueOf();
+                    }}>
+                        ‹   
+                    </button>
+    
+                    <button style={{flexGrow: 1}} onClick$={() => {
+                        currentView.value = "decade";
+                    }}>
+                        <span>
+                            {year.value}
+                        </span>
+                    </button>
+    
+                    <button onClick$={() => {
+                        const newDate = new Date(dateObj.value);
+    
+                        newDate.setFullYear(year.value + 1);
+    
+                        dateObj.value = newDate.valueOf();
+                    }}>
+                        ›
+                    </button>
+    
+                    <button onClick$={() => {
+                        const newDate = new Date(dateObj.value);
+    
+                        newDate.setFullYear(year.value + 10);
+    
+                        dateObj.value = newDate.valueOf();
+                    }}>
+                        »
+                    </button>
+    
+                </div>
+            </>
+        );
+    }
 
-                    dateObj.value = newDate.valueOf();
-                }}>
-                    «
-                </button>
-
-                <button onClick$={() => {
-                    const newDate = new Date(dateObj.value);
-
-                    newDate.setFullYear(year.value, newDate.getMonth() - 1);
-
-                    dateObj.value = newDate.valueOf();
-                }}>
-                    ‹   
-                </button>
-
-                <button style={{flexGrow: 1}}>
-                    <span>
-                        {capitalizeFirstLetter(month.value)} {year.value}
-                    </span>
-                </button>
-
-                <button onClick$={() => {
-                    const newDate = new Date(dateObj.value);
-
-                    newDate.setFullYear(year.value, newDate.getMonth() + 1);
-
-                    dateObj.value = newDate.valueOf();
-                }}>
-                    ›
-                </button>
-
-                <button onClick$={() => {
-                    const newDate = new Date(dateObj.value);
-
-                    newDate.setFullYear(year.value + 1);
-
-                    dateObj.value = newDate.valueOf();
-                }}>
-                    »
-                </button>
-
-            </div>
-        </>
-    );
+    return <></>
+    
 });

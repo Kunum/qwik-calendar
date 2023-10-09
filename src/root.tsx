@@ -9,12 +9,7 @@ export default () => {
       </head>
       <body>
         <h1>Qwik Calendar Demo</h1>
-        <Calendar 
-          onClickDay$={(day)=>console.log(day)} 
-          calendarStyles={{borderRadius: "10px"}}
-          navigationStyles={{backgroundColor: "#DDDDDD"}}
-          monthViewStyles={{backgroundColor: "#EEEEEE"}}
-        />
+        <Calendar/>
       </body>
     </>
   );

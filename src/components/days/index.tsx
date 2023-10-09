@@ -11,6 +11,14 @@ export interface DayProps{
     todayBgColor?: string
 }
 
+interface DayStylingProps{
+    onClickDay$?: PropFunction<(day: Date) => void>,
+    style?: CSSProperties,
+    dayTextColor?: string,
+    weekendTextColor?: string,
+    todayBgColor?: string
+}
+
 const Day = component$((props: DayProps) => {
     useStyles$(css);
 
@@ -43,29 +51,54 @@ const Day = component$((props: DayProps) => {
 
 export interface PriorDayProps{
     dateObj: number,
-    styles?: CSSProperties
+    styles?: CSSProperties,
+    show?: boolean
 }
 
 const PriorDay = component$((props: PriorDayProps) => {
-    const thisDate = new Date(props.dateObj);
+    const thisDate = props.show === undefined || props.show === true ? new Date(props.dateObj).getDate() : "";
 
     return (
         <>
             <button disabled qc-comp-id="prior-day" style={props.styles}>
-                <abbr>{thisDate.getDate()}</abbr>
+                <abbr>
+                    {
+                        thisDate
+                    }
+                </abbr>
             </button>
         </>
     );
 })
 
-function getDaysSinceLastSunday(dateObj: Date, styles?: CSSProperties){
+function getDaysSinceLastSunday(dateObj: Date, show?: boolean, styles?: CSSProperties){
     const days = [];
 
-    while (dateObj.getDay() !== 0){
-        dateObj.setDate(dateObj.getDate() - 1);
-        days.unshift(<PriorDay key={dateObj.valueOf()} dateObj={dateObj.valueOf()} styles={styles}/>);
+    const newDateObj = new Date(dateObj.valueOf());
+    newDateObj.setDate(1);
+
+    while (newDateObj.getDay() !== 0){
+        newDateObj.setDate(newDateObj.getDate() - 1);
+        days.unshift(<PriorDay key={newDateObj.valueOf()} dateObj={newDateObj.valueOf()} styles={styles} show={show}/>);
     }
     
+    return days;
+}
+
+function getDaysUntilNextSaturday(dateObj: Date, show?: boolean, styles?: CSSProperties){
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+
+    const newDateObj = new Date(year, month, 0);
+    const days = [];
+
+    const delta = 6 - newDateObj.getDay();
+
+    for (let i = 0; i < delta; i++){
+        newDateObj.setDate(newDateObj.getDate() + 1);
+        days.push(<PriorDay key={newDateObj.valueOf()} dateObj={newDateObj.valueOf()} styles={styles} show={show}/>);
+    }
+
     return days;
 }
 
@@ -76,63 +109,61 @@ function getMonthLength(dateObj: Date){
     return new Date(year, month, 0).getDate();
 }
 
-function getDaysUntilNextSaturday(dateObj: Date, styles?: CSSProperties){
-    const year = dateObj.getFullYear();
-    const month = dateObj.getMonth();
-
-    const newDateObj = new Date(year, month, 0);
+function getMonthDays(dateObj: Date, dayProps: DayStylingProps){
+    const newDate = new Date(dateObj);
+    newDate.setDate(1);
 
     const days = [];
 
-    const delta = 6 - newDateObj.getDay();
-    
-    for (let i = 0; i < delta; i++){
-        newDateObj.setDate(newDateObj.getDate() + 1);
-        days.push(<PriorDay key={newDateObj.valueOf()} dateObj={newDateObj.valueOf()} styles={styles}/>);
+    const lens = getMonthLength(newDate);
+
+    for (let i = 0; i < lens; i++){
+        days.push(
+            <Day 
+                key={newDate.valueOf()} 
+                dateObj={newDate.valueOf()} 
+                onClickDay$={dayProps.onClickDay$} 
+                style={dayProps.style}
+                dayTextColor={dayProps.dayTextColor}
+                weekendTextColor={dayProps.weekendTextColor}
+                todayBgColor={dayProps.todayBgColor}
+            />
+        );
+        newDate.setDate(newDate.getDate() + 1);
     }
 
-    return days;
+    return days
 }
+
 
 export interface DaysProps {
     dateObj: number,
-    onClickDay$?: (day: Date) => void,
+    onClickDay$?: PropFunction<(day: Date) => void>,
     styles?: CSSProperties,
     dayStyles?: CSSProperties,
     invalidDayStyles?: CSSProperties,
     dayTextColor?: string,
     weekendTextColor?: string,
-    todayBgColor?: string
+    todayBgColor?: string,
+    showNeighbouringMonth?: boolean
 }
 
 export const Days = component$((props: DaysProps) => {
-    let newDate = new Date(props.dateObj);
-    newDate.setDate(1);
-    const daysSinceLastSunday = getDaysSinceLastSunday(newDate);
+    const newDate = new Date(props.dateObj);
+
+    const daysSinceLastSunday = getDaysSinceLastSunday(newDate, props.showNeighbouringMonth, props.invalidDayStyles);
     
-    newDate = new Date(props.dateObj);
-    newDate.setDate(1);
+    const daysOfTheMonth = getMonthDays(newDate, 
+        {
+            onClickDay$:props.onClickDay$,
+            style:props.dayStyles,
+            dayTextColor:props.dayTextColor,
+            weekendTextColor:props.weekendTextColor,
+            todayBgColor:props.todayBgColor
+        }
+    );
 
-    const lens = getMonthLength(newDate);
-
-    const daysOfTheMonth = [];
-
-    for (let i = 0; i < lens; i++){
-        daysOfTheMonth.push(
-            <Day 
-                key={newDate.valueOf()} 
-                dateObj={newDate.valueOf()} 
-                onClickDay$={props.onClickDay$} 
-                style={props.dayStyles}
-                dayTextColor={props.dayTextColor}
-                weekendTextColor={props.weekendTextColor}
-                todayBgColor={props.todayBgColor}
-            />
-        );
-        newDate.setDate(newDate.getDate() + 1);
-    }
-    
-    const daysUntilNextSaturday = getDaysUntilNextSaturday(newDate);
+    const daysUntilNextSaturday = getDaysUntilNextSaturday(newDate, props.showNeighbouringMonth, props.invalidDayStyles);
 
     const days = [...daysSinceLastSunday, ...daysOfTheMonth, ...daysUntilNextSaturday];
 

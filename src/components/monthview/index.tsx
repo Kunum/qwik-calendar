@@ -15,7 +15,8 @@ export interface MonthViewProps {
   invalidDayStyles?: CSSProperties,
   dayTextColor?: string,
   weekendTextColor?: string,
-  todayBgColor?: string
+  todayBgColor?: string,
+  showNeighbouringMonth?: boolean
 }
 
 export const MonthView = component$((props: MonthViewProps) => {
@@ -36,6 +37,7 @@ export const MonthView = component$((props: MonthViewProps) => {
               dayTextColor={props.dayTextColor}
               weekendTextColor={props.weekendTextColor}
               todayBgColor={props.todayBgColor}
+              showNeighbouringMonth={props.showNeighbouringMonth}
             />
         </div>
     </>
