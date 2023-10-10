@@ -21,16 +21,18 @@ export interface CalendarProps {
   todayBgColor?: string,
   locale?: string,
   hideNavigation?: boolean,
-  showNeighbouringMonth?: boolean
+  showNeighbouringMonth?: boolean,
+  startingView?: string
 }
 
 export const Calendar = component$((props: CalendarProps) => {
   useStyles$(css);
 
-  const currentView = useSignal("month");
-  const currentDate = useSignal(new Date().valueOf());
-
   const locale = props.locale ? props.locale : "pt-br";
+  const startingView = props.startingView ? props.startingView : "month";
+
+  const currentView = useSignal(startingView);
+  const currentDate = useSignal(new Date().valueOf());
 
   // private methods
   const onChangeCurrentDate$ = $((newCurrentDate: number) => {
@@ -38,7 +40,6 @@ export const Calendar = component$((props: CalendarProps) => {
   }); 
 
   const onChangeView$ = $((newView: string) => {
-    console.log("On calendar:", newView)
     currentView.value = newView;
   });
 

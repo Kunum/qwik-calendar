@@ -54,6 +54,19 @@ import { Calendar } from "qwik-calendar";
 | dayTextColor     | string \| undefined                              | A cor do número do dia                                    | `"#00000"`                                 | `"#101101"`                    |
 | weekendTextColor | string \| undefined                              | A cor do número do dia de final de semana                 | `"#d10000"`                                | `"ff0000"`                     |
 | todayBgColor     | string \| undefined                              | A cor de fundo do dia atual no calendário                 | `"#ffff76"`                                | `"ffe386"`                     |
+| locale                | string \| undefined              | O idioma do calendário                                                  | `"pt-br"`     | `"en-us"`                                  |
+| hideNavigation        | boolean \| undefined             | Define se a barra de navegação será exibida                          | `false`       | `true`                                     |
+| showNeighbouringMonth | boolean \| undefined             | Define se a view do mês irá exibir dias dos meses anteriores e posteriores | `true`        | `false`                                    |
+| startingView          | string \| undefined              | Define em qual view o calendário exibirá quando renderizado pela primeira vez               | `"month"`     | `"year"`                                   |
+
+### Views
+
+As views são um conjunto de exibições do calendário que mostram diferentes tipos de data. O usuário pode mudar as views para avançar ou retornar para datas específicas de maneira mais rápida através da barra de navegação.
+
+**Views existentes:**
+
+* *Month View (view do mês)*: Mostra um mês específico com todos os dias do mês selecionado
+* *Year view (view do ano)*: Mostra um ano específico com todos os meses do ano selecionado
 
 ## Documentação em outros idiomas
 

@@ -1,10 +1,11 @@
 import { CSSProperties, PropFunction } from "@builder.io/qwik";
-export interface NavProps {
+export interface YearViewProps {
     locale: string;
     dateObj: number;
-    view: string;
     onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>;
     onChangeCurrentView$: PropFunction<(newCurrentView: string) => void>;
     styles?: CSSProperties;
+    monthStyles?: CSSProperties;
+    currentMonthBgColor?: string;
 }
-export declare const Navigation: import("@builder.io/qwik").Component<NavProps>;
+export declare const YearView: import("@builder.io/qwik").Component<YearViewProps>;

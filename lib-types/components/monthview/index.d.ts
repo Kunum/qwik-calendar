@@ -10,5 +10,6 @@ export interface MonthViewProps {
     dayTextColor?: string;
     weekendTextColor?: string;
     todayBgColor?: string;
+    showNeighbouringMonth?: boolean;
 }
 export declare const MonthView: import("@builder.io/qwik").Component<MonthViewProps>;

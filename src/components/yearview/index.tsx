@@ -29,7 +29,7 @@ const Month = component$((props: MonthProps) => {
             ...props.styles
         }}
             onClick$={() => {
-                props.onChangeCurrentDate$(props.dateObj);
+                props.onChangeCurrentDate$(thisDate.valueOf());
                 props.onChangeCurrentView$("month");
             }}
         >
@@ -51,7 +51,7 @@ export interface YearViewProps {
 export const YearView = component$((props: YearViewProps) => {
     useStyles$(css);
 
-    let months = [];
+    const months = [];
 
     const baseDate = new Date(props.dateObj);
 

@@ -1,12 +1,13 @@
 {
   "name": "qwik-calendar",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Um componente de calendário para aplicações Qwik",
   "main": "./lib/index.qwik.mjs",
   "qwik": "./lib/index.qwik.mjs",
   "types": "./lib-types/index.d.ts",
   "author": "Kunum Software",
   "license": "LGPL-3.0-only",
+  "keywords": ["qwik", "calendar", "components", "web"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kunum/qwik-calendar.git"
