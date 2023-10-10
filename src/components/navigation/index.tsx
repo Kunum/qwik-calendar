@@ -7,6 +7,7 @@ import { capitalizeFirstLetter } from "../../utils";
 export interface NavProps {
     locale: string,
     dateObj: number,
+    view: string,
     onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>,
     onChangeCurrentView$: PropFunction<(newCurrentView: string) => void>,
     styles?: CSSProperties
@@ -16,7 +17,9 @@ export const Navigation = component$((props: NavProps) => {
     useStyles$(css);
 
     const dateObj = useSignal(props.dateObj);
-    const currentView = useSignal("month");
+    const currentView = useSignal(props.view);
+
+    console.log("onNavigation: ", currentView.value)
 
     const month = useComputed$(() => {
         return new Date(dateObj.value).toLocaleString(props.locale, {month: 'long'});

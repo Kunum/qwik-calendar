@@ -38,6 +38,7 @@ export const Calendar = component$((props: CalendarProps) => {
   }); 
 
   const onChangeView$ = $((newView: string) => {
+    console.log("On calendar:", newView)
     currentView.value = newView;
   });
 
@@ -65,6 +66,8 @@ export const Calendar = component$((props: CalendarProps) => {
               styles={props.yearViewStyles}
               monthStyles={props.monthStyles}
               currentMonthBgColor={props.todayBgColor}
+              onChangeCurrentDate$={onChangeCurrentDate$}
+              onChangeCurrentView$={onChangeView$}
             />
   }
 
@@ -79,6 +82,7 @@ export const Calendar = component$((props: CalendarProps) => {
             <Navigation
               locale={locale}
               dateObj={currentDate.value}
+              view={currentView.value}
               onChangeCurrentDate$={onChangeCurrentDate$}
               onChangeCurrentView$={onChangeView$}
               styles={props.navigationStyles}
