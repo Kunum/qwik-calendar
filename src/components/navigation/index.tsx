@@ -189,7 +189,6 @@ export const Navigation = component$((props: NavProps) => {
                     }}>
                         »
                     </button>
-    
                 </div>
             </>
         );

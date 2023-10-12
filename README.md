@@ -69,6 +69,7 @@ Views are pre-defined exibition of the calendar that shows diferent kinds os dat
 
 * *Month View*: Shows an specific month with all of its days.
 * *Year view*: Shows an specific year with all of its months.
+* *Decade view*: Shows all years within an decade.
 
 ## Docs in other languages
 

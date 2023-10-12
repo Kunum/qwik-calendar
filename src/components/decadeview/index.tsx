@@ -4,6 +4,8 @@ import { getFirstYearOfTheDecade } from "../../utils";
 
 interface YearProps{
     dateObj: number,
+    onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>,
+    onChangeCurrentView$: PropFunction<(newCurrentView: string) => void>,
     currentYearColor?: string,
     styles?: CSSProperties
 }
@@ -24,7 +26,11 @@ const Year = component$((props: YearProps) => {
             marginInlineEnd: "0px",
             backgroundColor: backgroundColor,
             ...props.styles
-        }}>
+        }}
+            onClick$={() => {
+                props.onChangeCurrentDate$(thisDate.valueOf());
+                props.onChangeCurrentView$("year");
+            }}>
             <Slot/>
         </button>
     );
@@ -53,6 +59,8 @@ export const DecadeView = component$((props: DecadeViewProps) => {
                 dateObj={baseDate.valueOf()}
                 styles={props.yearStyles}
                 currentYearColor={props.currentYearBgColor}
+                onChangeCurrentDate$={props.onChangeCurrentDate$}
+                onChangeCurrentView$={props.onChangeCurrentView$}
             >
                 {ano}
             </Year>
