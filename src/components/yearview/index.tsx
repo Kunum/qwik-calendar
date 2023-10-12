@@ -1,6 +1,5 @@
-import { CSSProperties, component$, useStyles$, Slot, PropFunction } from "@builder.io/qwik";
+import { CSSProperties, component$, Slot, PropFunction } from "@builder.io/qwik";
 
-import css from "./yearview.module.css?inline";
 import { capitalizeFirstLetter } from "../../utils";
 
 interface MonthProps{
@@ -21,7 +20,7 @@ const Month = component$((props: MonthProps) => {
         ? currentMonthColor : "transparent";
 
     return (
-        <button qc-comp-id="month-tile" style={{
+        <button qc-comp-id="tile" style={{
             flex:"0 0 33.3333%", 
             overflow: "hidden", 
             marginInlineEnd: "0px",
@@ -49,8 +48,6 @@ export interface YearViewProps {
 }
  
 export const YearView = component$((props: YearViewProps) => {
-    useStyles$(css);
-
     const months = [];
 
     const baseDate = new Date(props.dateObj);

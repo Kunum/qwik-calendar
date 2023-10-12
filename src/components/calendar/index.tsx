@@ -5,6 +5,7 @@ import css from "./calendar.module.css?inline";
 import { Navigation } from "../navigation";
 import { MonthView } from "../monthview";
 import { YearView } from "../yearview";
+import { DecadeView } from "../decadeview";
 
 export interface CalendarProps {
   onClickDay$?: (day: Date) => void,
@@ -14,9 +15,11 @@ export interface CalendarProps {
   yearViewStyles?: CSSProperties,
   dayStyles?: CSSProperties,
   monthStyles?: CSSProperties,
+  yearStyles?: CSSProperties,
   daysStyles?: CSSProperties,
-  invalidDayStyles?: CSSProperties,
+  decadeViewStyles?: CSSProperties,
   dayTextColor?: string,
+  invalidDayStyles?: CSSProperties,
   weekendTextColor?: string,
   todayBgColor?: string,
   locale?: string,
@@ -69,6 +72,16 @@ export const Calendar = component$((props: CalendarProps) => {
               currentMonthBgColor={props.todayBgColor}
               onChangeCurrentDate$={onChangeCurrentDate$}
               onChangeCurrentView$={onChangeView$}
+            />
+  }
+  else if (currentView.value === "decade"){
+    view = <DecadeView
+              dateObj={currentDate.value}
+              onChangeCurrentDate$={onChangeCurrentDate$}
+              onChangeCurrentView$={onChangeView$}
+              styles={props.decadeViewStyles}
+              yearStyles={props.yearStyles}
+              currentYearBgColor={props.todayBgColor}
             />
   }
 

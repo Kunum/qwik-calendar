@@ -22,3 +22,7 @@
 :where([qc-comp-id='calendar']) *{
     box-sizing: border-box;
 }
+
+:where([qc-comp-id='tile']){
+    padding: 2em 0.5em;
+}

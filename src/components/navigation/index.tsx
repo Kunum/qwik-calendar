@@ -2,7 +2,7 @@ import { CSSProperties, PropFunction, component$, useComputed$, useStyles$ } fro
 
 import css from "./navigation.module.css?inline";
 
-import { capitalizeFirstLetter } from "../../utils";
+import { calculateDecade, capitalizeFirstLetter } from "../../utils";
 
 export interface NavProps {
     locale: string,
@@ -128,6 +128,62 @@ export const Navigation = component$((props: NavProps) => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value + 10);
+    
+                        props.onChangeCurrentDate$(newDate.valueOf());
+                    }}>
+                        »
+                    </button>
+    
+                </div>
+            </>
+        );
+    }
+    else if (props.view === "decade"){
+        return (
+            <>
+                <div qc-comp-id="navigation" style={props.styles}>
+                    <button onClick$={() => {
+                        const newDate = new Date(props.dateObj);
+    
+                        newDate.setFullYear(year.value - 100);
+    
+                        props.onChangeCurrentDate$(newDate.valueOf());
+                    }}>
+                        «
+                    </button>
+    
+                    <button onClick$={() => {
+                        const newDate = new Date(props.dateObj);
+    
+                        newDate.setFullYear(year.value - 10);
+    
+                        props.onChangeCurrentDate$(newDate.valueOf());
+                    }}>
+                        ‹   
+                    </button>
+    
+                    <button style={{flexGrow: 1}} onClick$={() => {
+                        props.onChangeCurrentView$("century");
+                    }}>
+                        <span>
+                            {calculateDecade(year.value)}
+                        </span>
+                    </button>
+    
+                    <button onClick$={() => {
+                        const newDate = new Date(props.dateObj);
+    
+                        newDate.setFullYear(year.value + 10);
+    
+                        props.onChangeCurrentDate$(newDate.valueOf());
+                    }}>
+                        ›
+                    </button>
+    
+                    <button onClick$={() => {
+                        const newDate = new Date(props.dateObj);
+    
+                        newDate.setFullYear(year.value + 100);
     
                         props.onChangeCurrentDate$(newDate.valueOf());
                     }}>
