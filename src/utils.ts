@@ -13,10 +13,8 @@ function getFirstYearOfTheDecade(year: number){
 }
 
 function calculateDecade(year: number){
-    let firstYear, lastYear;
-
-    firstYear = getFirstYearOfTheDecade(year);
-    lastYear = firstYear + 9;
+     const firstYear = getFirstYearOfTheDecade(year);
+     const lastYear = firstYear + 9;
 
     return `${firstYear} - ${lastYear}`;
 }
