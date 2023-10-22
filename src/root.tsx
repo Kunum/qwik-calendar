@@ -9,7 +9,7 @@ export default () => {
       </head>
       <body>
         <h1>Qwik Calendar Demo</h1>
-        <Calendar startingView="year"/>
+        <Calendar/>
       </body>
     </>
   );
