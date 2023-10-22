@@ -1,6 +1,7 @@
 :where([qc-comp-id='navigation']){
     display: flex;
-    height: 44px;
+    height: 10%;
+    min-height: 44px;
     margin-bottom: 1em;
 }
 

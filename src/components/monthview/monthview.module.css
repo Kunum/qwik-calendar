@@ -4,4 +4,6 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.75em;
+    height: 90%;
+    min-height: 220px;
 }

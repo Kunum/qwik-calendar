@@ -1,4 +1,6 @@
-import { CSSProperties, component$, PropFunction, Slot } from "@builder.io/qwik";
+import { CSSProperties, component$, PropFunction, Slot, useStyles$ } from "@builder.io/qwik";
+
+import css from "./decadeview.module.css?inline";
 
 import { getFirstYearOfTheDecade } from "../../utils";
 
@@ -46,6 +48,8 @@ export interface DecadeViewProps {
 }
 
 export const DecadeView = component$((props: DecadeViewProps) => {
+    useStyles$(css);
+
     const baseDate = new Date(props.dateObj);
     const firstYearOfTheDecade = getFirstYearOfTheDecade(baseDate.getFullYear());
 

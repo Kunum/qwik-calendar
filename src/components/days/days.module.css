@@ -1,6 +1,7 @@
 :where([qc-comp-id='days-div']){
     display: flex;
     flex-wrap: wrap;
+    height: 90%;
 }
 
 :where([qc-comp-id='day']), :where([qc-comp-id='prior-day']){

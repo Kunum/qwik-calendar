@@ -1,6 +1,7 @@
 :where([qc-comp-id='weekdays']){
     display: flex;
     flex-wrap: nowrap;
+    height: 10%;
 }
 
 :where([qc-comp-id='weekday']){

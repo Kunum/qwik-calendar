@@ -1,0 +1,7 @@
+:where([qc-comp-id='yearview']){
+    height: 100%;
+}
+
+:where([qc-comp-id='yearview']) > div{
+    height: 100%;
+}

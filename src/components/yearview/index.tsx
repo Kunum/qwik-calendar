@@ -1,4 +1,6 @@
-import { CSSProperties, component$, Slot, PropFunction } from "@builder.io/qwik";
+import { CSSProperties, component$, Slot, PropFunction, useStyles$ } from "@builder.io/qwik";
+
+import css from "./yearview.module.css?inline";
 
 import { capitalizeFirstLetter } from "../../utils";
 
@@ -48,6 +50,8 @@ export interface YearViewProps {
 }
  
 export const YearView = component$((props: YearViewProps) => {
+    useStyles$(css);
+
     const months = [];
 
     const baseDate = new Date(props.dateObj);
