@@ -7,9 +7,11 @@ export interface CalendarProps {
     yearViewStyles?: CSSProperties;
     dayStyles?: CSSProperties;
     monthStyles?: CSSProperties;
+    yearStyles?: CSSProperties;
     daysStyles?: CSSProperties;
-    invalidDayStyles?: CSSProperties;
+    decadeViewStyles?: CSSProperties;
     dayTextColor?: string;
+    invalidDayStyles?: CSSProperties;
     weekendTextColor?: string;
     todayBgColor?: string;
     locale?: string;
