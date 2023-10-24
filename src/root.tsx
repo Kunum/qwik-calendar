@@ -9,7 +9,9 @@ export default () => {
       </head>
       <body>
         <h1>Qwik Calendar Demo</h1>
-        <Calendar/>
+        <Calendar
+          calendarStyles={{width: "350px"}}
+        />
       </body>
     </>
   );
