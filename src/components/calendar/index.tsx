@@ -11,6 +11,7 @@ export interface CalendarProps {
   onClickDay$?: (day: Date) => void,
   calendarStyles?: CSSProperties,
   navigationStyles?: CSSProperties,
+  navigationButtonStyles?: CSSProperties,
   monthViewStyles?: CSSProperties,
   yearViewStyles?: CSSProperties,
   dayStyles?: CSSProperties,
@@ -100,6 +101,7 @@ export const Calendar = component$((props: CalendarProps) => {
               onChangeCurrentDate$={onChangeCurrentDate$}
               onChangeCurrentView$={onChangeView$}
               styles={props.navigationStyles}
+              buttonStyles={props.navigationButtonStyles}
             />
           }
           

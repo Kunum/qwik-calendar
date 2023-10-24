@@ -10,7 +10,8 @@ export interface NavProps {
     view: string,
     onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>,
     onChangeCurrentView$: PropFunction<(newCurrentView: string) => void>,
-    styles?: CSSProperties
+    styles?: CSSProperties,
+    buttonStyles?: CSSProperties
 }
 
 export const Navigation = component$((props: NavProps) => {
@@ -30,7 +31,7 @@ export const Navigation = component$((props: NavProps) => {
         return (
             <>
                 <div qc-comp-id="navigation" style={props.styles}>
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value - 1);
@@ -40,7 +41,7 @@ export const Navigation = component$((props: NavProps) => {
                         «
                     </button>
     
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value, newDate.getMonth() - 1);
@@ -50,7 +51,7 @@ export const Navigation = component$((props: NavProps) => {
                         ‹   
                     </button>
     
-                    <button style={{flexGrow: 1}} onClick$={() => {
+                    <button style={{flexGrow: 1, ...props.buttonStyles}} onClick$={() => {
                         props.onChangeCurrentView$("year");
                     }}>
                         <span>
@@ -58,7 +59,7 @@ export const Navigation = component$((props: NavProps) => {
                         </span>
                     </button>
     
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value, newDate.getMonth() + 1);
@@ -68,7 +69,7 @@ export const Navigation = component$((props: NavProps) => {
                         ›
                     </button>
     
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value + 1);
@@ -86,7 +87,7 @@ export const Navigation = component$((props: NavProps) => {
         return (
             <>
                 <div qc-comp-id="navigation" style={props.styles}>
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value - 10);
@@ -96,7 +97,7 @@ export const Navigation = component$((props: NavProps) => {
                         «
                     </button>
     
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value - 1);
@@ -106,7 +107,7 @@ export const Navigation = component$((props: NavProps) => {
                         ‹   
                     </button>
     
-                    <button style={{flexGrow: 1}} onClick$={() => {
+                    <button style={{flexGrow: 1, ...props.buttonStyles}} onClick$={() => {
                         props.onChangeCurrentView$("decade");
                     }}>
                         <span>
@@ -114,7 +115,7 @@ export const Navigation = component$((props: NavProps) => {
                         </span>
                     </button>
     
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value + 1);
@@ -124,7 +125,7 @@ export const Navigation = component$((props: NavProps) => {
                         ›
                     </button>
     
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value + 10);
@@ -142,7 +143,7 @@ export const Navigation = component$((props: NavProps) => {
         return (
             <>
                 <div qc-comp-id="navigation" style={props.styles}>
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value - 100);
@@ -152,7 +153,7 @@ export const Navigation = component$((props: NavProps) => {
                         «
                     </button>
     
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value - 10);
@@ -162,7 +163,7 @@ export const Navigation = component$((props: NavProps) => {
                         ‹   
                     </button>
     
-                    <button style={{flexGrow: 1}} onClick$={() => {
+                    <button style={{flexGrow: 1, ...props.buttonStyles}} onClick$={() => {
                         props.onChangeCurrentView$("century");
                     }}>
                         <span>
@@ -170,7 +171,7 @@ export const Navigation = component$((props: NavProps) => {
                         </span>
                     </button>
     
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value + 10);
@@ -180,7 +181,7 @@ export const Navigation = component$((props: NavProps) => {
                         ›
                     </button>
     
-                    <button onClick$={() => {
+                    <button style={props.buttonStyles} onClick$={() => {
                         const newDate = new Date(props.dateObj);
     
                         newDate.setFullYear(year.value + 100);
