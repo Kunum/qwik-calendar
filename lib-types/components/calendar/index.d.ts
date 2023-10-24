@@ -3,6 +3,7 @@ export interface CalendarProps {
     onClickDay$?: (day: Date) => void;
     calendarStyles?: CSSProperties;
     navigationStyles?: CSSProperties;
+    navigationButtonStyles?: CSSProperties;
     monthViewStyles?: CSSProperties;
     yearViewStyles?: CSSProperties;
     dayStyles?: CSSProperties;
@@ -10,6 +11,8 @@ export interface CalendarProps {
     yearStyles?: CSSProperties;
     daysStyles?: CSSProperties;
     decadeViewStyles?: CSSProperties;
+    decadeStyles?: CSSProperties;
+    centuryViewStylse?: CSSProperties;
     dayTextColor?: string;
     invalidDayStyles?: CSSProperties;
     weekendTextColor?: string;
