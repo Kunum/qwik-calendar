@@ -6,6 +6,7 @@ import { Navigation } from "../navigation";
 import { MonthView } from "../monthview";
 import { YearView } from "../yearview";
 import { DecadeView } from "../decadeview";
+import { CenturyView } from "../centuryview";
 
 export interface CalendarProps {
   onClickDay$?: (day: Date) => void,
@@ -19,6 +20,8 @@ export interface CalendarProps {
   yearStyles?: CSSProperties,
   daysStyles?: CSSProperties,
   decadeViewStyles?: CSSProperties,
+  decadeStyles?: CSSProperties,
+  centuryViewStylse?: CSSProperties,
   dayTextColor?: string,
   invalidDayStyles?: CSSProperties,
   weekendTextColor?: string,
@@ -84,6 +87,16 @@ export const Calendar = component$((props: CalendarProps) => {
               yearStyles={props.yearStyles}
               currentYearBgColor={props.todayBgColor}
             />
+  }
+  else{
+    view = <CenturyView
+      dateObj={currentDate.value}
+      onChangeCurrentDate$={onChangeCurrentDate$}
+      onChangeCurrentView$={onChangeView$}
+      styles={props.centuryViewStylse}
+      decadeStyles={props.decadeStyles}
+      currentYearBgColor={props.todayBgColor}
+    />
   }
 
   return (

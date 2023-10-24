@@ -1,10 +1,10 @@
 import { CSSProperties, component$, PropFunction, Slot, useStyles$ } from "@builder.io/qwik";
 
-import css from "./decadeview.module.css?inline";
+import { getFirstYearOfTheCentury, calculateDecade, getFirstYearOfTheDecade } from "../../utils";
 
-import { getFirstYearOfTheDecade } from "../../utils";
+import css from "./centuryview.module.css?inline";
 
-interface YearProps{
+interface DecadeProps{
     dateObj: number,
     onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>,
     onChangeCurrentView$: PropFunction<(newCurrentView: string) => void>,
@@ -12,14 +12,18 @@ interface YearProps{
     styles?: CSSProperties
 }
 
-const Year = component$((props: YearProps) => {
+const Decade = component$((props: DecadeProps) => {
     const thisDate = new Date(props.dateObj);
     const currentDate = new Date();
 
-    const currentYearColor = props.currentYearColor ? props.currentYearColor : "#ffff76";
+    const thisDecadeYear = thisDate.getFullYear()
+    const currentYear = currentDate.getFullYear();
 
-    const backgroundColor = (thisDate.getFullYear() === currentDate.getFullYear())
-        ? currentYearColor : "transparent";
+    const currentDecadeColor = props.currentYearColor ? props.currentYearColor : "#ffff76";
+
+    // is there a better way to do this?
+    const backgroundColor = (currentYear >= getFirstYearOfTheDecade(thisDecadeYear) && currentYear <= (getFirstYearOfTheDecade(thisDecadeYear) + 9))
+        ? currentDecadeColor : "transparent";
 
     return (
         <button qc-comp-id="tile" style={{
@@ -31,50 +35,50 @@ const Year = component$((props: YearProps) => {
         }}
             onClick$={() => {
                 props.onChangeCurrentDate$(thisDate.valueOf());
-                props.onChangeCurrentView$("year");
+                props.onChangeCurrentView$("decade");
             }}>
             <Slot/>
         </button>
     );
 });
 
-export interface DecadeViewProps {
+export interface CenturyViewProps {
     dateObj: number,
     onChangeCurrentDate$: PropFunction<(newCurrentDate: number) => void>,
     onChangeCurrentView$: PropFunction<(newCurrentView: string) => void>,
     styles?: CSSProperties,
-    yearStyles?: CSSProperties,
+    decadeStyles?: CSSProperties,
     currentYearBgColor?: string
 }
 
-export const DecadeView = component$((props: DecadeViewProps) => {
+export const CenturyView = component$((props: CenturyViewProps) => {
     useStyles$(css);
 
     const baseDate = new Date(props.dateObj);
-    const firstYearOfTheDecade = getFirstYearOfTheDecade(baseDate.getFullYear());
+    const firstYearOfTheCentury = getFirstYearOfTheCentury(baseDate.getFullYear());
 
     const anos = [];
 
-    for (let ano = firstYearOfTheDecade; ano <= firstYearOfTheDecade + 9; ano++){
+    for (let ano = firstYearOfTheCentury; ano <= firstYearOfTheCentury + 99; ano += 10){
         baseDate.setFullYear(ano);
 
         anos.push(
-            <Year
+            <Decade
                 dateObj={baseDate.valueOf()}
-                styles={props.yearStyles}
+                styles={props.decadeStyles}
                 currentYearColor={props.currentYearBgColor}
                 onChangeCurrentDate$={props.onChangeCurrentDate$}
                 onChangeCurrentView$={props.onChangeCurrentView$}
                 key={ano}
             >
-                {ano}
-            </Year>
+                {calculateDecade(ano)}
+            </Decade>
         )
     }
 
     return (
       <>
-          <div qc-comp-id="decadeview" style={{display: "flex", flexWrap: "wrap", ...props.styles}}>
+          <div qc-comp-id="centuryview" style={{display: "flex", flexWrap: "wrap", ...props.styles}}>
             {anos}
           </div>  
       </>
